@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %} Your order is in process! {% endblock %}
+{% block content %}
+
+<h3>This brings our total orders of {{ recipe }} to {{ newCartonsOrdered[0] }}
+cartons total!</h3>
+
+<p>We thank you for your business, and in just 6-8 weeks you'll be thanking
+us!</p>
+
+<hr/>
+<center>
+<p>Choose another <a href="{{url_for('chooseflavor')}}">base flavor</a> to
+explore.</p>
+</center>
+{% endblock %}

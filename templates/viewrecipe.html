@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block title %} Welcome to {{ recipe }} {% endblock %}
+{% block content %}
+<h1>Welcome to the secrets of "{{ recipe }}"!</h1>
+<p>There are {{ cartonsOrdered }} cartons of {{ recipe }} on backorder!</p>
+<h2>Ingredients:</h2>
+<center>
+<table border=1 cellpadding=5 cellspacing=5>
+<tr><th>Mixins</th><th>Cost per oz</th></tr>
+{% for mixin in ingredients %}
+    <tr><td>{{ mixin[0] }}</td><td>{{ mixin[1] }}</td></tr>
+{% endfor %}
+</table>
+<hr/>
+How many cartons of {{ recipe }} would you like to order?
+<form method=post>
+<input type=hidden name=recipe value="{{ recipe }}" />
+<input type=text name=numCartons />
+<input type=submit value="Order!" />
+</form>
+<hr/>
+Return to <a href="{{url_for('browserecipes', flavor=baseFlavor)}}">other
+{{baseFlavor}}-based recipes</a>&nbsp;&nbsp;or&nbsp;&nbsp;
+Choose <a href="{{url_for('chooseflavor')}}">another base flavor</a>
+</center>
+{% endblock %}

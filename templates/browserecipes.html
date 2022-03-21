@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %} {{ flavor }} {% endblock %}
+{% block content %}
+<h1>Browse our {{ flavor }} recipes!</h1>
+<ul>
+{% for recipe in recipes %}
+    <li><a href="{{ url_for('viewrecipe', recipe=recipe[0]) }}">
+        {{ recipe[0] }}</a></li>
+{% endfor %}
+</ul>
+<hr/>
+<center>
+Choose <a href="{{url_for('chooseflavor')}}">another base flavor</a>
+</center>
+{% endblock %}
