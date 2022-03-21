@@ -1,0 +1,24 @@
+<html>
+<head>
+    <title>Choose a flavor</title>
+</head>
+<body>
+<h1>Choose a flavor!</h1>
+<h2>Using hyperlinks...</h2>
+<ul>
+{% for flavor in flavors %}
+    <li><a href="{{ url_for('chooseflavor', flavor=flavor[0]) }}">
+        {{ flavor[0] }}</a></li>
+{% endfor %}
+</ul>
+<h2>Using drop-down...</h2>
+<form method="get" >
+<select name="flavor">
+{% for flavor in flavors %}
+    <option value="{{ flavor[0] }}">{{flavor[0]}}</option>
+{% endfor %}
+</select>
+<input type=submit value="Choose flavor!" />
+</form>
+</body>
+</html>
