@@ -20,14 +20,15 @@ def chooseflavor():
 def browserecipes():
     if 'flavor' not in request.args:
         return redirect(url_for("chooseflavor"))
+    the_flavor_they_apparently_like = request.args['flavor']
     conn = sqlite3.connect(os.path.join(current_app.root_path,"bj.sqlite"))
     recipes = conn.cursor().execute("""
         select name from recipe
         where flavorName=?
-    """, (request.args['flavor'],)).fetchall()
+    """, (the_flavor_they_apparently_like,)).fetchall()
 
-    return render_template("browserecipes.html", flavor=request.args['flavor'],
-        recipes=recipes)
+    return render_template("browserecipes.html",
+        flavor=the_flavor_they_apparently_like, recipes=recipes)
 
 @bj.route("/viewrecipe", methods=['GET','POST'])
 def viewrecipe():
